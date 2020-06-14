@@ -44,7 +44,7 @@ public class ChooseDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 if (mListener != null) {
-                    mListener.openCamera();
+                    mListener.onCameraButtonClick();
                 }
                 dismiss();
             }
@@ -54,7 +54,7 @@ public class ChooseDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 if (mListener != null) {
-                    mListener.openGallery();
+                    mListener.onGalleryButtonClick();
                 }
                 dismiss();
             }
@@ -65,9 +65,9 @@ public class ChooseDialogFragment extends DialogFragment {
 
     public interface ChooseDialogInterface {
 
-        void openGallery();
+        void onGalleryButtonClick();
 
-        void openCamera();
+        void onCameraButtonClick();
 
     }
 
