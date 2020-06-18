@@ -95,7 +95,7 @@ public class UploadImageFragment extends Fragment implements ChooseDialogFragmen
                 if (mImageUri == null) {
                     Toast.makeText(mContext, "Please take an image", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(mContext, "Image URI Found !!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Image URI Found : " + mImageUri.toString(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -138,7 +138,7 @@ public class UploadImageFragment extends Fragment implements ChooseDialogFragmen
                 mImageUri = FileProvider.getUriForFile(mContext,
                         "com.example.android.fileprovider",
                         photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
+
                 startActivityForResult(takePictureIntent, CAPTURE_IMAGE);
             }
         }
@@ -150,7 +150,7 @@ public class UploadImageFragment extends Fragment implements ChooseDialogFragmen
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && data != null) {
             if (requestCode == CAPTURE_IMAGE) {//img from camera
-                Bundle extras = data.getExtras();// TODO this Produce null pointer exception!
+                Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                 ivImg.setImageBitmap(imageBitmap);
             } else if (requestCode == PICK_IMAGE) {// img from gallery
@@ -222,7 +222,4 @@ public class UploadImageFragment extends Fragment implements ChooseDialogFragmen
     }
 
 
-    void hello() {
-
-    }
 }
