@@ -222,4 +222,7 @@ public class UploadImageFragment extends Fragment implements ChooseDialogFragmen
     }
 
 
+    void hello() {
+
+    }
 }
