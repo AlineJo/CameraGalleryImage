@@ -2,5 +2,6 @@
 <paths>
     <external-files-path
         name="my_images"
-        path="Android/data/com.example.cameragalleryimage/files/Pictures" />
+        path="/" />
+    <!--    Android/data/com.example.cameragalleryimage/files/Pictures-->
 </paths>

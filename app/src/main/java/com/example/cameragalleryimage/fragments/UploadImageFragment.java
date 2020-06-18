@@ -148,9 +148,9 @@ public class UploadImageFragment extends Fragment implements ChooseDialogFragmen
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK && data != null) {
             if (requestCode == CAPTURE_IMAGE) {//img from camera
-                Bundle extras = data.getExtras();
+                Bundle extras = data.getExtras();// TODO this Produce null pointer exception!
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                 ivImg.setImageBitmap(imageBitmap);
             } else if (requestCode == PICK_IMAGE) {// img from gallery
@@ -179,7 +179,7 @@ public class UploadImageFragment extends Fragment implements ChooseDialogFragmen
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "IMG_" + timeStamp + "_";
-        File storageDir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File storageDir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);// mContext.getExternalCacheDir();
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
