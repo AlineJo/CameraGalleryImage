@@ -27,6 +27,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.cameragalleryimage.R;
 
 import java.io.File;
@@ -138,7 +139,8 @@ public class UploadImageFragment extends Fragment implements ChooseDialogFragmen
                 mImageUri = FileProvider.getUriForFile(mContext,
                         "com.example.cameragalleryimage.fileprovider",
                         photoFile);
-
+                Glide.with(mContext).load(mImageUri).into(ivImg);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
                 startActivityForResult(takePictureIntent, CAPTURE_IMAGE);
             }
         }
@@ -149,11 +151,7 @@ public class UploadImageFragment extends Fragment implements ChooseDialogFragmen
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && data != null) {
-            if (requestCode == CAPTURE_IMAGE) {//img from camera
-                Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                ivImg.setImageBitmap(imageBitmap);
-            } else if (requestCode == PICK_IMAGE) {// img from gallery
+            if (requestCode == PICK_IMAGE) {// img from gallery
                 try {
                     Uri imgUri = data.getData();
                     InputStream imageStream = mContext.getContentResolver().openInputStream(imgUri);//2
@@ -165,9 +163,6 @@ public class UploadImageFragment extends Fragment implements ChooseDialogFragmen
                     e.printStackTrace();
                 }
             }
-
-        } else {
-            Toast.makeText(mContext, "Unexpected Error Happened while selecting  picture!", Toast.LENGTH_SHORT).show();
 
         }
 
