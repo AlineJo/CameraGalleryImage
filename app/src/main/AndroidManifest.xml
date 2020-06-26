@@ -20,7 +20,7 @@
         <!-- File provider is a generic way to store image file across different Android SDK, And it enable us to get uri-->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.android.fileprovider"
+            android:authorities="com.example.cameragalleryimage.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

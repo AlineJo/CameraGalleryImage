@@ -136,7 +136,7 @@ public class UploadImageFragment extends Fragment implements ChooseDialogFragmen
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 mImageUri = FileProvider.getUriForFile(mContext,
-                        "com.example.android.fileprovider",
+                        "com.example.cameragalleryimage.fileprovider",
                         photoFile);
 
                 startActivityForResult(takePictureIntent, CAPTURE_IMAGE);
